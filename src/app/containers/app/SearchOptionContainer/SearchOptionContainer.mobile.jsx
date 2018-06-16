@@ -7,38 +7,46 @@ import styled from 'styled-components';
 
 import { border } from '@styles/styles';
 import { calcUpdatedTime } from '@utils/mathUtils';
+import Facon from '@components/common/Facon/Facon.mobile';
 import withUuid from '@hocs/withUuid';
 
 const searchOptionList = [
   'newest',
   'score',
-]
+];
 
 const StyledDropDown = styled.div`
   ${border('gray')};
+  border-radius: 10px;
   margin-right: 10px;
   margin-left: auto;
-`
+`;
 
 const StyledDropDownList = styled.div`
   margin-top: 5px;
-`
+`;
 
 const StyledDropDownElem = styled.div`
   margin-top: 5px;
-`
+  margin-right: 7px;
+`;
+
+const StyledFacon = styled.div`
+  margin-left: 5px;
+`;
 
 const StyledSearchOption = styled.div`
   margin-top: 5px;  
   padding: 8px 0px;
   display: flex;
   text-align: right
-`
+`;
 
 const StyledSelectedOption = styled.div`
-  ${border('gray')};
+  display: flex;
+  border-radius: 10px;
   padding: 5px 5px;
-`
+`;
 
 
 class SearchOptionContainer extends React.Component {
@@ -88,6 +96,9 @@ const SearchOptionDropDown = (props) => {
     <StyledDropDown>
       <StyledSelectedOption onClick={props.toggleList}>
         {props.selectedOption}
+        <StyledFacon>
+          <Facon label='caret-down'/>
+        </StyledFacon>
       </StyledSelectedOption>
         {props.listOpen &&
           <StyledDropDownList>
