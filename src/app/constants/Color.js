@@ -50,6 +50,7 @@ export default {
   GRAY7: '#f2f2f2',
   GRAY73: '#f5f5f5',
   GRAY8: '#f6f6f6',
+  GRAY9: '#fcfcfb',
 
   GRAYBLUE4: '#424f63',
 
@@ -72,6 +73,7 @@ export default {
   LIGHTPURPLE6: '#fcfbff',
 
   ORANGE5: '#f35526',
+  ORANGE6: '#ffbe2b',
   
   PINK2: '#bf5692',
   PINK3: '#cc3d59',

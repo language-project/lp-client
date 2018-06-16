@@ -1,29 +1,28 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
+// import * as React from 'react';
+// import styled from 'styled-components';
 
-import { border } from '@styles/styles';
-import Color from '@constants/Color';
+// import { border } from '@styles/styles';
+// import Color from '@constants/Color';
 
-const StyledMastheadBase = styled.div`
-  align-items: center;
-  background-color: ${Color.WHITE4};
-  display: flex;
-  height: 46px;
-  padding: 0 3px;
-  ${border('blue')}
+// const StyledMastheadBase = styled.div`
+//   align-items: center;
+//   background-color: ${Color.WHITE4};
+//   display: flex;
+//   height: 46px;
+//   padding: 0 7px;
 
-  i {
-    font-size: 20px;
-  }
-`;
+//   i {
+//     font-size: 20px;
+//   }
+// `;
 
-const MastheadBase = (props) => {
-  return (
-    <StyledMastheadBase className={props.className}>
-      {props.children}
-    </StyledMastheadBase>
-  );
-};
+// const MastheadBase = (props) => {
+//   return (
+//     <StyledMastheadBase>
+//       {props.children}
+//     </StyledMastheadBase>
+//   );
+// };
 
-export default MastheadBase;
+// export default MastheadBase;

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { border } from '@styles/styles';
 import Color from '@constants/Color';
 import Facon from '@components/common/Facon/Facon.mobile';
-import MastheadBase from './MastheadBase.mobile';
+import MastheadBase from '@components/Masthead/MastheadBase/MastheadBase.mobile';
 import SearchInput from './SearchInput.mobile';
 
 const RemoveIcon = (props) => {

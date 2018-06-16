@@ -1,8 +1,14 @@
-import * as React from 'react';
-import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import * as React from 'react';
+import { 
+  Route,
+  Switch,
+  withRouter,
+} from 'react-router-dom';
 
-import Masthead from '@src/components/app/Masthead/Masthead.mobile';
+// import Masthead from '@src/components/app/Masthead/Masthead.mobile';
+import DefineMastheadContainer from '@containers/Masthead/DefineMastheadContainer/DefineMastheadContainer.mobile';
 import KeyCode from '@constants/KeyCode';
 
 class MastheadContainer extends React.Component {
@@ -96,8 +102,8 @@ class MastheadContainer extends React.Component {
   }
 
   render() {
-    const { pathname } = this.props.location;
     const displayName = this.resolveName(this.props.location.pathname, this.state.displayName);
+  
 
     return (
       <Masthead
@@ -117,4 +123,17 @@ class MastheadContainer extends React.Component {
   }
 }
 
-export default withRouter(connect()(MastheadContainer));
+MastheadContainer.propTypes = {
+};
+
+const makeMapStateToProps = () => {
+
+  return (state, props) => {
+    
+  };
+}
+
+export default compose(
+  withRouter,
+  connect(makeMapStateToProps),
+)(MastheadContainer);

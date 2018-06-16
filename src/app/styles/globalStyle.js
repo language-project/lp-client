@@ -18,7 +18,6 @@ export default () => {
       height: 100%;
       font-size: 13px;
       font-family: sans-serif;
-      background-color: ${Color.GRAY5};
       line-height: 1.15;
     }
 
@@ -31,16 +30,15 @@ export default () => {
       width: 100%;
     }
 
-    button {
-      background-color: transparent;
-      border: 1px;
-      &:focus {
-        outline: 0;
-      }
-    }
-
     select, textarea, button, input {
+      background-color: transparent;
+      border: none;
       line-height: 1;
+      padding: 0;
+      
+      &:focus {
+        outline: none;
+      }
     }
 
     a {
@@ -50,6 +48,15 @@ export default () => {
         cursor: pointer;
         color: ${Color.BLUISH5};
       }
+    }
+
+    #app-root {
+      position: fixed;
+      height: 100%; 
+    }
+
+    #app-main {
+      height: 100%;
     }
   `;
 };
