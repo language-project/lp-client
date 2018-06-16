@@ -5,7 +5,7 @@
     ["@babel/preset-stage-2", { "decoratorsLegacy": true }]
   ],
   "env": {
-    "local": {
+    "development": {
       "plugins": [
         "react-hot-loader/babel",
         [ "babel-plugin-styled-components", {
