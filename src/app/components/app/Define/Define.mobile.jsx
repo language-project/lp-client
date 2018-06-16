@@ -89,19 +89,21 @@ const AddMore = () => {
 }
 
 const Define = ({
-  defineRef,
-  handleClickAddUsage,
+  handleChangeValue,
   id,
-  usages,
 }) => {
   return (
     <StyledDefine id={id}>
       <Form>
         <Term
+          className="ab"
+          onChange={(e) => handleChangeValue(e, 'term')}
           placeholder={`Any expression to define.`}/>
         <Definition
+          onChange={(e) => handleChangeValue(e, 'definition')}
           placeholder={`What is the meaning? You may also elaborate the origin of the expression.`}/>
         <Usage
+          onChange={(e) => handleChangeValue(e, 'usage')}
           placeholder={`Usage. Give us how the term is used in context, at least a single case`}/>
       </Form>
       <AddMore/>
@@ -110,9 +112,8 @@ const Define = ({
 };
 
 Define.propTypes = {
-  defineRef: PropTypes.object.isRequired,
-  handleClickAddUsage: PropTypes.func.isRequired,
-  usages: PropTypes.any,
+  handleChangeValue: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default Define;
