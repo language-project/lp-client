@@ -3,35 +3,85 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import { border } from '@styles/styles';
+import { calculateTime } from '@utils/mathUtils';
+import UpvoteIcon from '@src/components/icons/Upvote/Upvote.mobile';
 
 const Row = styled.div`
   display: flex;
   font-size: 12px;
   justify-content: space-between;
+  padding: 4px
 `;
 const StyledDefinition = styled.div`
+  ${border('black')};
   margin-top: 5px;
   padding: 8px 0px;
+`;
+const StyledBox = styled.div`
   ${border('black')};
+  margin-left: ${props => props.left};
+  padding: 5px 5px;
+  width: ${props => props.size};
+`;
+
+const StyledVoteBox = styled.div`
+  display: flex;
+`;
+
+const StyledFunctionBox = styled.div`
+  display: flex;
 `;
 
 const Definition = ({
   definition,
   handleClick,
+  updatedTime,
 }) => {
   return (
     <StyledDefinition
-    onClick = {(e) => {
-      handleClick(e, definition.get('id'));
+      onClick = {(e) => {
+      handleClick(e, definition.id);
     }}>
       <Row>
-        {definition.get('term').label}
+        <StyledBox size = '100%'>
+          {definition.term.label}
+        </StyledBox>
+        <StyledBox left = '8px'>
+          {definition.user.username}
+        </StyledBox>
+        <StyledBox left = '5px'>
+          {updatedTime}
+        </StyledBox>
       </Row>
       <Row>
-        <div>
-          {definition.get('label')}
-        </div>
-      <Poss poss={definition.get('poss')}/>
+        <StyledBox size = '100%'>
+          {definition.label}
+        </StyledBox>
+      </Row>
+      <Row>
+        <StyledFunctionBox>
+          <StyledBox>
+            다른뜻 3
+          </StyledBox>
+          <StyledBox left = '5px'>
+            댓글 3
+          </StyledBox>
+        </StyledFunctionBox>
+        <StyledVoteBox>
+          <StyledBox>
+            {definition.vote.upVoteCount}
+          </StyledBox>
+          <StyledBox left = '5px'>
+            {/* <UpvoteIcon/> */}
+            UP
+          </StyledBox>
+          <StyledBox left = '5px'>
+            {definition.vote.downVoteCount}
+          </StyledBox>
+          <StyledBox left = '5px'>
+            DW
+          </StyledBox>
+        </StyledVoteBox>
       </Row>
     </StyledDefinition>
   )
@@ -51,13 +101,15 @@ const Poss = ({
     : null;
 }
 const Definitions = (props) => {
-  return (props.definitions && props.definitions.map) 
-    ? props.definitions.map((definition, idx) => {
+  return (props.definitions.data && props.definitions.data.map) 
+    ? props.definitions.data.map((definition, idx) => {
+      const updatedTime = calculateTime(definition.term.created_at);
       return (
         <Definition
           handleClick={props.handleClickDefinition}
           key={idx}
-          definition={definition}/>
+          definition={definition}
+          updatedTime={updatedTime}/>
       );
       // return (
       //   <DefinitionPane
