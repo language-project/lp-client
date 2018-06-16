@@ -19,6 +19,7 @@ const Row = styled.div`
 `;
 
 const StyledComment = styled.div`
+  padding: 5px 5px;
   margin-top: 15px;
 `;
 
@@ -27,7 +28,6 @@ const StyledName = styled.div`
 `;
 const StyledVote = styled.div`
   display: flex;
-  float: right;
   margin-right: 5px
 `;
 
