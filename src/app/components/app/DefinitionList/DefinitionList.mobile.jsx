@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import { border } from '@styles/styles';
 import { calculateTime } from '@utils/mathUtils';
+import Facon from '@components/common/Facon/Facon.mobile';
 
 const Row = styled.div`
   display: flex;
@@ -44,18 +45,18 @@ const Definition = ({
       handleClick(e, definition.id);
     }}>
       <Row>
-        <StyledBox size = '100%'>
+        <StyledBox size='100%'>
           {definition.term.label}
         </StyledBox>
-        <StyledBox left = '8px'>
+        <StyledBox left='8px'>
           {definition.user.username}
         </StyledBox>
-        <StyledBox left = '5px'>
+        <StyledBox left='5px'>
           {updatedTime}
         </StyledBox>
       </Row>
       <Row>
-        <StyledBox size = '100%'>
+        <StyledBox size='100%'>
           {definition.label}
         </StyledBox>
       </Row>
@@ -64,23 +65,25 @@ const Definition = ({
           <StyledBox>
             다른뜻 3
           </StyledBox>
-          <StyledBox left = '5px'>
+          <StyledBox left='5px'>
             댓글 3
           </StyledBox>
         </StyledFunctionBox>
         <StyledVoteBox>
           <StyledBox>
+            <Facon label='ellipsis-h'/>
+          </StyledBox>
+          <StyledBox left='5px'>
             {definition.vote.upVoteCount}
           </StyledBox>
-          <StyledBox left = '5px'>
-            {/* <UpvoteIcon/> */}
-            UP
+          <StyledBox left='5px'>
+            <Facon label='thumbs-up'/>
           </StyledBox>
-          <StyledBox left = '5px'>
+          <StyledBox left='5px'>
             {definition.vote.downVoteCount}
           </StyledBox>
-          <StyledBox left = '5px'>
-            DW
+          <StyledBox left='5px'>
+            <Facon label='thumbs-down'/>
           </StyledBox>
         </StyledVoteBox>
       </Row>
