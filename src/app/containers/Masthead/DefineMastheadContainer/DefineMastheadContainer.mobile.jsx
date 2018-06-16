@@ -4,8 +4,6 @@ import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 
 import DefineMasthead from '@components/Masthead/DefineMasthead/DefineMasthead.mobile';
-import Masthead from '@src/components/app/Masthead/Masthead.mobile';
-import KeyCode from '@constants/KeyCode';
 
 class DefineMastheadContainer extends React.Component {
   constructor() {

@@ -10,6 +10,7 @@ import {
 import { border } from '@styles/styles';
 import Color from '@constants/Color';
 import DefineMastheadContainer from '@containers/Masthead/DefineMastheadContainer/DefineMastheadContainer.mobile';
+export { MASTHEAD_HEIGHT } from '@components/Masthead/MastheadBase/MastheadBase.mobile';
 
 const Masthead = () => {
   return (
