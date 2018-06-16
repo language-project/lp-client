@@ -4,19 +4,20 @@ import styled from 'styled-components';
 
 import { border } from '@styles/styles';
 import { calculateTime } from '@utils/mathUtils';
-import UpvoteIcon from '@src/components/icons/Upvote/Upvote.mobile';
 
 const Row = styled.div`
   display: flex;
   font-size: 12px;
   justify-content: space-between;
-  padding: 4px
+  padding: 4px;
 `;
+
 const StyledDefinition = styled.div`
   ${border('black')};
   margin-top: 5px;
   padding: 8px 0px;
 `;
+
 const StyledBox = styled.div`
   ${border('black')};
   margin-left: ${props => props.left};
@@ -84,8 +85,8 @@ const Definition = ({
         </StyledVoteBox>
       </Row>
     </StyledDefinition>
-  )
-}
+  );
+};
 
 const Poss = ({
   poss,
@@ -99,7 +100,8 @@ const Poss = ({
       );
     })
     : null;
-}
+};
+
 const Definitions = (props) => {
   return (props.definitions.data && props.definitions.data.map) 
     ? props.definitions.data.map((definition, idx) => {
@@ -119,7 +121,7 @@ const Definitions = (props) => {
       // );
     })
     : null;
-}
+};
 
 const StyledDefinitionList = styled.div`
 `;
@@ -134,12 +136,12 @@ const DefinitionList = ({
         definitions={definitions}
         handleClickDefinition={handleClickDefinition}/>
     </StyledDefinitionList>
-  )
+  );
 };
 
 DefinitionList.propTypes = {
   definitions: PropTypes.array,
   handleClickDefinition: PropTypes.func.isRequired,
-}
+};
 
 export default DefinitionList;
