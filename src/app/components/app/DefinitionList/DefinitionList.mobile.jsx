@@ -104,7 +104,6 @@ const DefinitionList = ({
 };
 
 DefinitionList.propTypes = {
-  definitions: PropTypes.array,
   handleClickDefinition: PropTypes.func.isRequired,
 };
 
