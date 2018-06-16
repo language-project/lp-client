@@ -29,6 +29,15 @@ export default {
       url: URL.DEFINITIONS,
     },
   },
+  [URL.SESSION_NEW]: {
+    post: {
+      data: {
+        email: Maybe,
+        password: Maybe,
+      },
+      url: URL.SESSION_NEW,
+    },
+  },
   // getDefinitions: function ({
   //   page,
   // }) {

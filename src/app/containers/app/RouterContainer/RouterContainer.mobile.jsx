@@ -11,6 +11,7 @@ import * as React from 'react';
 import AppURL from '@constants/AppURL';
 import ErrorLayout from '@components/layouts/ErrorLayout/ErrorLayout.mobile';
 import HomeLayout from '@components/layouts/HomeLayout/HomeLayout.mobile';
+import { makeReselectCredential } from '@selectors/authSelector';
 
 class RouterContainer extends React.Component {
   constructor() {
@@ -37,7 +38,10 @@ class RouterContainer extends React.Component {
       return (
         <Route
           render={(props) => {
-            return <HomeLayout/>;
+            return (
+              <HomeLayout
+                credential={this.props.credential}/>
+            );
           }}/>
       );
     }
@@ -55,4 +59,15 @@ class RouterContainer extends React.Component {
 RouterContainer.propTypes = {
 };
 
-export default RouterContainer;
+const makeMapStateToProps = () => {
+  const selectCredential = makeReselectCredential();
+  return (state, props) => {
+    return {
+      credential: selectCredential(state, props),
+    };
+  };
+}
+
+export default compose(
+  connect(makeMapStateToProps),
+)(RouterContainer);
