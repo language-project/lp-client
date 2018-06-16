@@ -1,19 +1,25 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as React from 'react';
-import { withRouter } from 'react-router';
+import { 
+  Redirect, 
+  withRouter,
+} from 'react-router';
 
-import SignIn from '@src/components/app/SignIn/SignIn.mobile';
+import AppURL from '@constants/AppURL';
 import KeyCode from '@constants/KeyCode';
-// import { requestSignInUser } from '@actions/userActions'
+import { makeReselectCredential } from '@selectors/authSelector';
+import { requestSignInUser } from '@actions/userActions'
+import SignIn from '@components/app/SignIn/SignIn.mobile';
 
 class SignInContainer extends React.Component {
-  constructor(...props) {
-    super(...props);
+  constructor(props) {
+    super(props);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleClickSignIn = this.handleClickSignIn.bind(this);
     this.handleClickSignUp = this.handleClickSignUp.bind(this);
     this.navigateToMainPage = this.navigateToMainPage.bind(this);
     this.state = {
@@ -48,21 +54,8 @@ class SignInContainer extends React.Component {
     }
   }
 
-  handleClick(e) {
-    // if (e.nativeEvent.which === MouseEvent.LEFT_CLICK) {
-    //   this.dispatchSignIn();
-    // }
-  }
-
-  dispatchSignIn() {
-    // this.props.dispatch(requestSignInUser({
-    //   email: this.state.email,
-    //   password: this.state.password,
-    // })).then((res) => {
-    //   if (res.msg === "success") {
-    //     this.props.history.push(`/`);
-    //   }
-    // });
+  handleClickSignIn(e) {
+    this.dispatchSignIn();
   }
 
   handleClickSignUp() {
@@ -73,23 +66,42 @@ class SignInContainer extends React.Component {
     this.props.history.push('/');
   }
 
+  dispatchSignIn() {
+    this.props.dispatch(requestSignInUser({
+      email: this.state.email,
+      password: this.state.password,
+    }));
+  }
+
   render() {
-    return (
-      <SignIn
-        value={this.state.email}
-        member={this.props.member}
-        handleChangeEmail={this.handleChangeEmail}
-        handleChangePassword={this.handleChangePassword}
-        handleClickSignUp={this.handleClickSignUp}
-        handleKeyDown={this.handleKeyDown}
-        handleClick={this.handleClick}/>
-    );
+    if (this.props.credential) {
+      return <Redirect to={AppURL._}/>
+    } else {
+      return (
+        <SignIn
+          value={this.state.email}
+          member={this.props.member}
+          handleChangeEmail={this.handleChangeEmail}
+          handleChangePassword={this.handleChangePassword}
+          handleKeyDown={this.handleKeyDown}
+          handleClickSignIn={this.handleClickSignIn}
+          handleClickSignUp={this.handleClickSignUp}/>
+      );
+    }
   }
 }
 
-const makeMapStateToProps = (state, props) => {
-  return {
-    ...state
+SignInContainer.propTypes = {
+  credential: PropTypes.any,
+};
+
+const makeMapStateToProps = () => {
+  const selectCredential = makeReselectCredential();
+
+  return (state, props) => {
+    return {
+      credential: selectCredential(state, props),
+    };
   };
 };
 

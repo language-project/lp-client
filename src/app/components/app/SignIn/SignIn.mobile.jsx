@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import * as React from 'react';
-import styled, { StyledFunction } from 'styled-components';
+import styled from 'styled-components';
 
 import { border } from '@styles/styles';
 import Color from '@constants/Color';
@@ -79,24 +80,47 @@ const StyledSignIn = styled.div`
   padding: 10px;
 `;
 
-const SignIn = (props) => (
-  <StyledSignIn>
-    <Input placeholder="이메일"
-      value={props.username}
-      onChange={props.handleChangeEmail}/>
-    <Input type="password" placeholder="비밀번호"
-      value={props.password}
-      onChange={props.handleChangePassword}
-      onKeyDown={props.handleKeyDown}/>
-    <Button onClick={props.handleClick}>
-      로그인
-    </Button>
-    <BottomMenuGroup>
-      <Text onClick={props.handleClickSignUp}>회원가입</Text>
-      <Text>|</Text>
-      <Text>로그인에 문제가 있으신가요?</Text>
-    </BottomMenuGroup>
-  </StyledSignIn>
-);
+const SignIn = ({
+  handleChangeEmail,
+  handleChangePassword,
+  handleClickSignIn,
+  handleClickSignUp,
+  handleKeyDown,
+  password,
+  username,
+}) => {
+  return (
+    <StyledSignIn>
+      <Input 
+        onChange={handleChangeEmail}
+        placeholder="이메일"
+        value={username}/>
+      <Input 
+        onChange={handleChangePassword}
+        onKeyDown={handleKeyDown}
+        placeholder="비밀번호"
+        type="password"
+        value={password}/>
+      <Button onClick={handleClickSignIn}>
+        로그인
+      </Button>
+      <BottomMenuGroup>
+        <Text onClick={handleClickSignUp}>회원가입</Text>
+        <Text>|</Text>
+        <Text>로그인에 문제가 있으신가요?</Text>
+      </BottomMenuGroup>
+    </StyledSignIn>
+  );
+};
+
+SignIn.propTypes = {
+  handleChangeEmail: PropTypes.func.isRequired,
+  handleChangePassword: PropTypes.func.isRequired,
+  handleClickSignIn: PropTypes.func.isRequired,
+  handleClickSignUp: PropTypes.func.isRequired,
+  handleKeyDown: PropTypes.func.isRequired,
+  password: PropTypes.string,
+  username: PropTypes.string,
+};
 
 export default SignIn;

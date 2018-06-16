@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
+import { 
+  Route, 
+  Switch,
+  withRouter,
+} from 'react-router-dom';
 import styled from 'styled-components';
-import { withRouter, BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import AppURL from '@constants/AppURL'
 import { border } from '@styles/styles';
@@ -14,18 +18,24 @@ const Page = styled.div`
   ${border('red')}
 `;
 
-const HomeLayout = () => {
+const HomeLayout = ({
+  credential,
+}) => {
   return (
     <div>
       <MastheadContainer/>
       <Page>
         <Switch>
           <Route 
+            path={AppURL._}
+            render={(props) => {
+              return <DefinitionListContainer/>;
+          }}/>
+          <Route 
             path={AppURL.SEARCH}
             render={(props) => {
               return <DefinitionListContainer/>;
           }}/>
-
           <Route
             component={SignInContainer}
             path={AppURL.SIGNIN}/>
@@ -48,13 +58,17 @@ const HomeLayout = () => {
             }}/>
           */}
           <Route
-            render={(props) => (
-              <DefinitionListContainer/>
-            )}/>
+            render={(props) => {
+              return <div>no route defined</div>
+            }}/>
         </Switch>
       </Page>
     </div>
   );
+};
+
+HomeLayout.propTypes = {
+  credential: PropTypes.any,
 };
 
 export default withRouter(HomeLayout);
