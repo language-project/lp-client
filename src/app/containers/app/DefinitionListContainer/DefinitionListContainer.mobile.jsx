@@ -1,15 +1,18 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { withRouter } from 'react-router';
 
+import ActionType from '@constants/ActionType';
 import Definition from '@models/data/Definition';
 import DefinitionList from '@src/components/app/DefinitionList/DefinitionList.mobile';
-// import { requestGetDefinitions } from '@actions/definitionActions';
+import { requestGetDefinitions } from '@actions/definitionActions';
 // import {
 //   selectCombinedDefinitionsInDisplay,
 //   selectDefinitionsInDisplay,
 // } from '@selectors/definitionSelector';
+import { makeReselectDefinitionList } from '@selectors/definitionSelector';
 import withUuid from '@hocs/withUuid';
 
 class DefinitionListContainer extends React.Component {
@@ -20,9 +23,9 @@ class DefinitionListContainer extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.dispatch(requestGetDefinitions({
-    //   componentId: this.props.componentId,
-    // }));
+    this.props.dispatch(requestGetDefinitions({
+      componentId: this.props.componentId,
+    }));
   }
 
   handleClickTerm(e, url) {
@@ -46,13 +49,23 @@ class DefinitionListContainer extends React.Component {
 
 DefinitionListContainer.propTypes = {
   componentId: PropTypes.string.isRequired,
-  definitions: PropTypes.arrayOf(PropTypes.instanceOf(Definition)),
+  // definitions: PropTypes.arrayOf(PropTypes.instanceOf(Definition)),
 };
 
-const mapStateToProps = (state, props) => {
-  return {
-    // definitions: state.definitionReducer.definitions[props.componentId],
+const makeMapStateToProps = () => {
+  const selectDefinitionList = makeReselectDefinitionList({
+    actionType: ActionType.REQUEST_GET_DEFINITIONS,
+  });
+
+  return (state, props) => {
+    return {
+      definitions: selectDefinitionList(state, props),
+    };
   };
 };
 
-export default withUuid(withRouter(connect(mapStateToProps)(DefinitionListContainer)));
+export default compose(
+  withUuid,
+  withRouter,
+  connect(makeMapStateToProps),
+)(DefinitionListContainer);
