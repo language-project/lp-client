@@ -42,11 +42,9 @@ const DefaultMasthead = ({
         </Button>
         <Button onClick={handleClickPencil}>
           <Facon label="pencil-square"/>
-          {/* <span onClick={props.handleClickPencilIcon}>WR</span> */}
         </Button>
         <Button onClick={handleClickHamburger}>
           <Facon label="bars"/>
-          {/* <span onClick={props.handleClickHamburgerIcon}>HM</span> */}
         </Button>
       </ButtonGroup>
     </MastheadBase>
