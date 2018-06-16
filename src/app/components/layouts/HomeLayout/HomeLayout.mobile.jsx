@@ -12,16 +12,17 @@ import { border } from '@styles/styles';
 import Color from '@constants/Color';
 import DefineContainer from '@containers/app/DefineContainer/DefineContainer.mobile';
 import DefinitionListContainer from '@containers/app/DefinitionListContainer/DefinitionListContainer.mobile';
-import MastheadContainer from '@containers/Masthead/MastheadContainer/MastheadContainer.mobile';
-import Masthead from '@components/Masthead/Masthead/Masthead.mobile';
+import Masthead, { MASTHEAD_HEIGHT } from '@components/Masthead/Masthead/Masthead.mobile';
 import SignInContainer from '@containers/app/SignInContainer/SignInContainer.mobile';
 
 const StyledHomeLayout = styled.div`
   background-color: ${Color.GRAY9};
   height: 100%;
+  overflow-y: scroll;
 `;
 
 const Page = styled.div`
+  padding-top: ${MASTHEAD_HEIGHT}px;
 `;
 
 const HomeLayout = ({
