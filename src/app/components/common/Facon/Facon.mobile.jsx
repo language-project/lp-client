@@ -5,16 +5,20 @@ import PropTypes from 'prop-types';
 import { border } from '@styles/styles';
 import Color from '@constants/Color';
 
-const Icon = (props) => {
-  const className = props.className ? ` ${className}` : '';
+const Icon = ({
+  className,
+  label,
+  ...restProps,
+}) => {
+  const _className = className ? ` ${className}` : '';
 
   return (
     <i
-      {...props}
+      {...restProps}
       area-hidden="true"
-      className={`fa fa-${props.label}${className}`}/>
+      className={`fa fa-${label}${_className}`}/>
   );
-}
+};
 
 const Facon = ({
   repeat,
