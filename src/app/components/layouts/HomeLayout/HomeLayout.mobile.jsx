@@ -18,7 +18,6 @@ import SignInContainer from '@containers/app/SignInContainer/SignInContainer.mob
 const StyledHomeLayout = styled.div`
   background-color: ${Color.GRAY9};
   height: 100%;
-  overflow-y: scroll;
 `;
 
 const Page = styled.div`

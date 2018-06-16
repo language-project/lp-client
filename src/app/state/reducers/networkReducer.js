@@ -11,7 +11,7 @@ function onSucceed({
   return {
     ...state,
     data: {
-      [action.payload.requestId]: factory(action.payload.definitions),
+      [action.payload.requestId]: factory(action.payload.data),
     },
     // dataFetchInProgress: Network.COMPLETED,
   }

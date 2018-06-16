@@ -49,5 +49,9 @@ export default () => {
         color: ${Color.BLUISH5};
       }
     }
+
+    #app-root, #app-main {
+      height: 100%;
+    }
   `;
 };
