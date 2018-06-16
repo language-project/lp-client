@@ -11,6 +11,7 @@ const StyledMastheadBase = styled.div`
   align-items: center;
   background-color: white;
   border-bottom: 1px solid ${Color.GRAY5};
+  color: ${Color.BLACK4};
   display: flex;
   height: ${MASTHEAD_HEIGHT}px;
   justify-content: space-between;
