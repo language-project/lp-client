@@ -35,26 +35,10 @@ class RouterContainer extends React.Component {
       return <ErrorLayout/>;
     } else {
       return (
-        <Switch>
-          <Route
-            exact
-            path={AppURL._}
-            render={() => {
-              return <HomeLayout/>
+        <Route
+          render={(props) => {
+            return <HomeLayout/>;
           }}/>
-          <Route 
-            exact 
-            path={AppURL.SIGNIN}
-            render={(props) => {
-              return this.props.tokenIsValid 
-                ? <Redirect to={AppURL._}/>
-                : <div>sign in</div>
-          }}/>
-          <Route 
-            render={(props) => {
-              return <HomeLayout/>;
-          }}/>;
-        </Switch>
       );
     }
   }

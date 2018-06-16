@@ -8,6 +8,7 @@ import { border } from '@styles/styles';
 import Color from '@constants/Color';
 import DefinitionListContainer from '@containers/app/DefinitionListContainer/DefinitionListContainer.mobile';
 import MastheadContainer from '@containers/app/MastheadContainer/MastheadContainer.mobile';
+import SignInContainer from '@containers/app/SignInContainer/SignInContainer.mobile';
 
 const Page = styled.div`
   ${border('red')}
@@ -23,7 +24,11 @@ const HomeLayout = () => {
             path={AppURL.SEARCH}
             render={(props) => {
               return <DefinitionListContainer/>;
-            }}/>
+          }}/>
+
+          <Route
+            component={SignInContainer}
+            path={AppURL.SIGNIN}/>
 
           {/* <Route
             path={AppURL.DEFINE}
@@ -41,15 +46,7 @@ const HomeLayout = () => {
                 </div>
               );
             }}/>
-
-          <Route
-            path={AppURL.SIGNIN}
-            component={SignInContaienr}/>
-
-          <Route
-            path={AppURL.SIGNUP}
-            component={SignUpContainer}/> */}
-                  
+          */}
           <Route
             render={(props) => (
               <DefinitionListContainer/>
