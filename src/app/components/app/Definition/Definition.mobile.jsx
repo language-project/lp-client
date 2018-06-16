@@ -66,7 +66,9 @@ const Definition = ({
         <Row>
           <Lower definition={definition}/>
         </Row>
-        <Usage usages={definition.usages}/>
+        <Row>
+          <Usage usages={definition.usages}/>
+        </Row>
       </StyledDefinition>
     )
     : null;

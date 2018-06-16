@@ -4,7 +4,7 @@ import styled, { StyledFunction } from 'styled-components';
 import { border } from '@styles/styles';
 
 const StyledUsage = styled.div`
-  margin: 5px 0px;
+  width: 100%;
   ${border('black')};
 `;
 
