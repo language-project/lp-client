@@ -54,34 +54,21 @@ export function requestDefine({
   };
 };
 
-// export function requestGetDefinitionsById({
-//   defId,
-// }) {
-//   return async (dispatch, getState) => {
-//     dispatch({
-//       type: ActionType.REQUEST_GET_DEFINITIONS_BY_ID,
-//     });
-
-//     try {
-//       const result = await MarmoymAPI.getDefinitionsById({
-//         defId,
-//       });
-
-//       dispatch({
-//         payload: {
-//           ...selectAxiosPayload(result),
-//         },
-//         type: ActionType.REQUEST_GET_DEFINITIONS_BY_ID_SUCCESS,
-//       });
-//     } catch (err) {
-//       Logger.error(err);
-//       dispatch({
-//         error: selectAxiosError(err),
-//         type: ActionType.REQUEST_GET_DEFINITIONS_BY_ID_ERROR,
-//       });
-//     }
-//   }
-// };
+export function requestGetDefinitionsById({
+  componentId,
+  defId,
+}) {
+  return async (dispatch, getState) => {
+    return Aktion.of(ActionType.REQUEST_GET_DEFINITIONS_BY_ID)
+      .dispatcher(dispatch)
+      .basePayload(arguments[0])
+      .async(LpApis.post({
+        data: arguments[0],
+        url: URL.DEFINITIONS_BY_ID,
+      }))
+      .fire();
+  }
+}
 
 // export const search = (searchParam) => {
 //   return (dispatch, getState) => {

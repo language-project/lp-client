@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 import { border } from '@styles/styles';
 import { calculateTime } from '@utils/mathUtils';
-import Facon from '@components/common/Facon/Facon.mobile';
+import Lower from '@components/app/Definition/Lower/Lower.mobile'
+import Upper from '@components/app/Definition/Upper/Upper.mobile'
 
 const Row = styled.div`
   display: flex;
@@ -26,14 +27,6 @@ const StyledBox = styled.div`
   width: ${props => props.size};
 `;
 
-const StyledVoteBox = styled.div`
-  display: flex;
-`;
-
-const StyledFunctionBox = styled.div`
-  display: flex;
-`;
-
 const Definition = ({
   definition,
   handleClick,
@@ -45,15 +38,7 @@ const Definition = ({
       handleClick(e, definition.id);
     }}>
       <Row>
-        <StyledBox size='100%'>
-          {definition.term.label}
-        </StyledBox>
-        <StyledBox left='8px'>
-          {definition.user.username}
-        </StyledBox>
-        <StyledBox left='5px'>
-          {updatedTime}
-        </StyledBox>
+        <Upper definition={definition} updatedTime={updatedTime}/>
       </Row>
       <Row>
         <StyledBox size='100%'>
@@ -61,31 +46,7 @@ const Definition = ({
         </StyledBox>
       </Row>
       <Row>
-        <StyledFunctionBox>
-          <StyledBox>
-            다른뜻 3
-          </StyledBox>
-          <StyledBox left='5px'>
-            댓글 3
-          </StyledBox>
-        </StyledFunctionBox>
-        <StyledVoteBox>
-          <StyledBox>
-            <Facon label='ellipsis-h'/>
-          </StyledBox>
-          <StyledBox left='5px'>
-            {definition.vote.upVoteCount}
-          </StyledBox>
-          <StyledBox left='5px'>
-            <Facon label='thumbs-up'/>
-          </StyledBox>
-          <StyledBox left='5px'>
-            {definition.vote.downVoteCount}
-          </StyledBox>
-          <StyledBox left='5px'>
-            <Facon label='thumbs-down'/>
-          </StyledBox>
-        </StyledVoteBox>
+        <Lower definition={definition}/>
       </Row>
     </StyledDefinition>
   );

@@ -6,6 +6,7 @@ export const URL = {
   COMMENTS: `${ROOT}/comments`,
   DEFINITION_NEW: `${ROOT}/definition/new`,
   DEFINITIONS: `${ROOT}/definitions`,
+  DEFINITIONS_BY_ID: `${ROOT}/definitions/1`,
   DEFINITIONS_IDS: `${ROOT}/definitions/ids`,
   NEWDEFINITIONS: `${ROOT}/newdefinitions`,
   SESSION_NEW: `${ROOT}/session/new`,
@@ -18,7 +19,10 @@ export const Maybe = '';
 export default {
   [URL.COMMENTS]: {
     post: {
-      data: {},
+      data: {
+        targetId: {},
+        targetType: {},
+      },
       url: URL.COMMENTS,
     },
   },
@@ -36,6 +40,14 @@ export default {
         page: Maybe,
       },
       url: URL.DEFINITIONS,
+    },
+  },
+  [URL.DEFINITIONS_BY_ID]: {
+    post: {
+      data: {
+        defId: {},
+      },
+      url: URL.DEFINITIONS_BY_ID,
     },
   },
   [URL.SESSION_NEW]: {
