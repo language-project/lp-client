@@ -13,6 +13,7 @@ import { requestGetDefinitions } from '@actions/definitionActions';
 //   selectDefinitionsInDisplay,
 // } from '@selectors/definitionSelector';
 import { makeReselectDefinitionList } from '@selectors/definitionSelector';
+import SearchOptionContainer from '@containers/app/SearchOptionContainer/SearchOptionContainer.mobile'
 import withUuid from '@hocs/withUuid';
 
 class DefinitionListContainer extends React.Component {
@@ -40,9 +41,12 @@ class DefinitionListContainer extends React.Component {
 
   render() {
     return (
-      <DefinitionList
-        definitions={this.props.definitions}
-        handleClickDefinition={this.handleClickDefinition}/>
+      <div>
+        <SearchOptionContainer/>
+        <DefinitionList
+          definitions={this.props.definitions}
+          handleClickDefinition={this.handleClickDefinition}/>
+      </div>
     );
   }
 }
