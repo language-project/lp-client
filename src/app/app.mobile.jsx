@@ -25,6 +25,7 @@ if ((typeof window !== 'undefined' && !window._babelPolyfill)
 (async () => {
   const configureStore = (await import('@src/state/configureStore')).default;
   const RouterContainer = (await import('@src/containers/app/RouterContainer/RouterContainer.mobile')).default;
+  const globalStyle = (await import('@styles/globalStyle')).default();
 
   const rootEl = document.getElementById(ROOT_ID);
   const store = configureStore();
