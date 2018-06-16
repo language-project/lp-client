@@ -1,0 +1,62 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "jsx": "react",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "outDir": "tsc_out",
+    "paths": {
+      "@actions/*": [
+        "src/app/state/actions/*"
+      ],
+      "@apis/*": [
+        "src/app/apis/*"
+      ],
+      "@components/*": [
+        "src/app/components/*"
+      ],
+      "@config/*": [
+        "src/app/config/*"
+      ],
+      "@constants/*": [
+        "src/app/constants/*"
+      ],
+      "@containers/*": [
+        "src/app/containers/*"
+      ],
+      "@hocs/*": [
+        "src/app/hocs/*"
+      ],
+      "@models/*": [
+        "src/app/models/*"
+      ],
+      "@modules/*": [
+        "src/app/modules/*"
+      ],
+      "@selectors/*": [
+        "src/app/state/selectors/*"
+      ],
+      "@src/*": [
+        "src/app/*"
+      ],
+      "@styles/*": [
+        "src/app/styles/*"
+      ],
+      "@updaters/*": [
+        "src/app/state/updaters/*"
+      ],
+      "@utils/*": [
+        "src/app/utils/*"
+      ]
+    },
+    "target": "es6"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
