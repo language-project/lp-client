@@ -4,17 +4,15 @@ import styled from 'styled-components';
 
 import { border } from '@styles/styles';
 import Color from '@constants/Color';
-
-const Email = styled.div``;
-const Password = styled.div``;
+import Facon from '@components/common/Facon/Facon.mobile';
 
 const Input = styled.input`
-  width: 100%;
+  border-bottom: 1px solid ${Color.GRAY5};
+  font-size: 15px;
   height: 40px;
-  padding: 5px;
-  border: 1px solid #c5b9ce;
-  border-radius: 3px;
   margin-bottom: 10px;
+  padding: 5px 0;
+  width: 100%;
 
   ::placeholder {
     color: ${Color.BLACK5};
@@ -23,40 +21,23 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  width: 100%;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  height: 40px;
-  margin-top: 3px;
-  border: 1px solid #c5b9ce;
-  border-radius: 5px;
-  background-color: ${Color.GRAY5};
+  background-color: ${Color.ORANGE6};
+  border-radius: 3px;
+  color: ${Color.WHITE5};
   cursor: pointer;
-
-  &:hover {
-    color: black;
-    background-color: ${Color.BLACK6};
-    box-shadow: inset 1px 1px 3px 0px rgba(0,0,0,0.75);
-  }
-`;
-
-const Checkbox = styled.input`
+  display: flex;
+  font-size: 15px;
+  font-weight: 600;
+  height: 40px;
+  justify-content: center;
   margin-top: 3px;
-  padding: 9px 12px;
-`;
-
-const CheckboxText = styled.div`
-  display: inline;
-  margin-top: 3px;
-  padding: 9px 12px;
+  width: 100%;
 `;
 
 const Text = styled.span`
   color: ${Color.GRAY4};
 `;
-
-const TextIcon = styled.span``;
 
 const BottomMenuGroup = styled.div`
   margin-top: 3px;
@@ -93,21 +74,23 @@ const SignIn = ({
     <StyledSignIn>
       <Input 
         onChange={handleChangeEmail}
-        placeholder="이메일"
+        placeholder={"Email"}
         value={username}/>
-      <Input 
+      <Input
         onChange={handleChangePassword}
         onKeyDown={handleKeyDown}
-        placeholder="비밀번호"
+        placeholder={"Password"}
         type="password"
         value={password}/>
       <Button onClick={handleClickSignIn}>
-        로그인
+        Sign In
       </Button>
       <BottomMenuGroup>
-        <Text onClick={handleClickSignUp}>회원가입</Text>
+        <Text onClick={handleClickSignUp}>
+          Sign Up
+        </Text>
         <Text>|</Text>
-        <Text>로그인에 문제가 있으신가요?</Text>
+        <Text>Problems signing in?</Text>
       </BottomMenuGroup>
     </StyledSignIn>
   );
