@@ -75,13 +75,15 @@ const StyledDefinitionList = styled.div`
 const DefinitionList = ({
   definitions,
   handleClickDefinition,
-}) => (
-  <StyledDefinitionList>
-    <Definitions 
-      definitions={definitions}
-      handleClickDefinition={handleClickDefinition}/>
-  </StyledDefinitionList>
-);
+}) => {
+  return (
+    <StyledDefinitionList>
+      <Definitions 
+        definitions={definitions}
+        handleClickDefinition={handleClickDefinition}/>
+    </StyledDefinitionList>
+  )
+};
 
 DefinitionList.propTypes = {
   definitions: PropTypes.array,
