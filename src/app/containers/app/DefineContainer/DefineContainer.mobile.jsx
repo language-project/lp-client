@@ -8,45 +8,38 @@ import Define from '@src/components/app/Define/Define.mobile';
 import { uuid } from '@utils/mathUtils';
 
 export const DEFINE_FORM_ID = uuid('define');
+export const DEFINE_FORM_VALUES = '__values';
 
 class DefineContainer extends React.Component {
   constructor() {
     super();
-    this.defineRef = React.createRef(); 
-    this.state = {
-      usages: [
-        '',
-      ],
-    };
+    this.form = undefined;
+    this.handleChangeValue = this.handleChangeValue.bind(this);
   }
 
-  handleClickAddUsage(e) {
-    const { usages } = this.state;
-    usages.push('');
-    this.setState({
-      usages,
-    });
+  componentDidMount() {
+    this.form = document.getElementById(DEFINE_FORM_ID);
+    this.form[DEFINE_FORM_VALUES] = {};
+  }
+
+  handleChangeValue(e, id) {
+    this.form[DEFINE_FORM_VALUES][id] = e.target.value;
   }
 
   render() {
     return (
       <Define
-        defineRef={this.defineRef}
-        handleClickAddUsage={this.handleClickAddUsage.bind(this)}
-        id={DEFINE_FORM_ID}
-        usages={this.state.usages}/>
+        handleChangeValue={this.handleChangeValue}
+        id={DEFINE_FORM_ID}/>
     );
   }
 }
 
-DefineContainer.propTypes = {
-
-};
+DefineContainer.propTypes = {};
 
 const makeMapStateToProps = () => {
   return (state, props) => {
     return {
-      
     };
   };
 };

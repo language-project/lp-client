@@ -1,9 +1,17 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 
+import AppURL from '@constants/AppURL';
+import { 
+  DEFINE_FORM_ID,
+  DEFINE_FORM_VALUES,
+} from '@containers/app/DefineContainer/DefineContainer.mobile';
 import DefineMasthead from '@components/Masthead/DefineMasthead/DefineMasthead.mobile';
+import { requestDefine } from '@actions/definitionActions';
+import withUuid from '@hocs/withUuid';
 
 class DefineMastheadContainer extends React.Component {
   constructor() {
@@ -13,12 +21,20 @@ class DefineMastheadContainer extends React.Component {
   }
 
   handleClickClose(e) {
-    console.log(123, 1);
     this.props.history.goBack();
   }
 
   handleClickPost(e) {
-    console.log(123, 2);
+    const form = document.getElementById(DEFINE_FORM_ID);
+    this.props.dispatch(requestDefine({
+      componentId: this.props.componentId,
+      form: form[DEFINE_FORM_VALUES],
+    }))
+      .then((res) => {
+        if (res.error !== undefined) {
+          this.props.history(AppURL._);
+        }
+      });
   }
 
   render() {
@@ -31,6 +47,7 @@ class DefineMastheadContainer extends React.Component {
 }
 
 DefineMastheadContainer.propTypes = {
+  componentId: PropTypes.string.isRequired,
 };
 
 const makeMapStateToProps = () => {
@@ -42,5 +59,6 @@ const makeMapStateToProps = () => {
 
 export default compose(
   withRouter,
+  withUuid,
   connect(makeMapStateToProps),
 )(DefineMastheadContainer);

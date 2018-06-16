@@ -22,8 +22,12 @@ const RightButtonGroup = ButtonGroup.extend`
   justify-content: flex-end;
 `;
 
-const Icon = styled(Facon)`
+const Button = styled.div`
+  align-items: center;
   cursor: pointer;
+  display: flex;
+  height: 100%;
+  padding: 0 4px;
 `;
 
 const DefineMasthead = ({
@@ -33,13 +37,18 @@ const DefineMasthead = ({
   return (
     <MastheadBase>
       <ButtonGroup>
-        <Icon 
-          label="close"
-          onClick={handleClickClose}/>
+        <Button>
+          <Facon
+            label="close"
+            onClick={handleClickClose}/>
+        </Button>
       </ButtonGroup>
       <Title>Define</Title>
       <RightButtonGroup>
-        <DefaultButton>POST</DefaultButton>
+        <DefaultButton
+          onClick={handleClickPost}>
+          POST
+        </DefaultButton>
       </RightButtonGroup>
     </MastheadBase>
   )

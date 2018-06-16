@@ -4,6 +4,7 @@ const ROOT = process.env.NODE_ENV === 'development'
 
 export const URL = {
   COMMENTS: `${ROOT}/comments`,
+  DEFINITION_NEW: `${ROOT}/definition/new`,
   DEFINITIONS: `${ROOT}/definitions`,
   DEFINITIONS_IDS: `${ROOT}/definitions/ids`,
   NEWDEFINITIONS: `${ROOT}/newdefinitions`,
@@ -19,6 +20,14 @@ export default {
     post: {
       data: {},
       url: URL.COMMENTS,
+    },
+  },
+  [URL.DEFINITION_NEW]: {
+    post: {
+      data: {
+        definitions: Maybe,
+      },
+      url: URL.DEFINITION_NEW,
     },
   },
   [URL.DEFINITIONS]: {

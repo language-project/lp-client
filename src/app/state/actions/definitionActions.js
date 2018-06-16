@@ -1,10 +1,58 @@
-import { selectAxiosPayload, selectAxiosError } from '@modules/Axios';
 import ActionType from '@constants/ActionType';
 import Aktion from '@modules/Aktion';
-import Logger from '@modules/Logger';
 import LpApis, { URL } from '@apis/LpApis/LpApis';
 
-const logger = new Logger('action');
+export function requestGetDefinitions({
+  componentId,
+  page,
+}) {
+  return async (dispatch, getState) => {
+    return Aktion.of(ActionType.REQUEST_GET_DEFINITIONS)
+      .dispatcher(dispatch)
+      .basePayload(arguments[0])
+      .async(LpApis.post({
+        data: arguments[0],
+        url: URL.DEFINITIONS,
+      }))
+      .fire();
+  };
+};
+
+export function requestDefine({
+  form,
+}) {
+  return async (dispatch, getState) => {
+    const data = {
+      definitions: [
+        {
+          label: form.definition,
+          poss: [
+            {
+              id: 1,
+            },
+          ],
+          term: {
+            label: form.term,
+          },
+          usages: [
+            {
+              label: form.usage,
+            },
+          ],
+        },
+      ],
+    };
+
+    return Aktion.of(ActionType.REQUEST_DEFINE)
+      .dispatcher(dispatch)
+      .basePayload(arguments[0])
+      .async(LpApis.post({
+        data,
+        url: [URL.DEFINITION_NEW],
+      }))
+      .fire();
+  };
+};
 
 // export function requestGetDefinitionsById({
 //   defId,
@@ -34,47 +82,6 @@ const logger = new Logger('action');
 //     }
 //   }
 // };
-
-export function requestGetDefinitions({
-  componentId,
-  page,
-}) {
-  return async (dispatch, getState) => {
-    return Aktion.of(ActionType.REQUEST_GET_DEFINITIONS)
-      .dispatcher(dispatch)
-      .basePayload(arguments[0])
-      .async(LpApis.post({
-        data: arguments[0],
-        url: URL.DEFINITIONS,
-      }))
-      .fire();
-
-    // dispatch({
-    //   payload: arguments[0],
-    //   type: ActionType.REQUEST_GET_DEFINITIONS,
-    // });
-
-    // try {
-    //   const result = await MarmoymAPI.getDefinitions({
-    //     page,
-    //   });
-
-    //   dispatch({
-    //     payload: {
-    //       componentId,
-    //       ...selectAxiosPayload(result),
-    //     },
-    //     type: ActionType.REQUEST_GET_DEFINITIONS_SUCCESS,
-    //   });
-    // } catch (err) {
-    //   Logger.error(err);
-    //   dispatch({
-    //     error: selectAxiosError(err),
-    //     type: ActionType.REQUEST_GET_DEFINITIONS_ERROR,
-    //   });
-    // }
-  }
-};
 
 // export const search = (searchParam) => {
 //   return (dispatch, getState) => {

@@ -60,6 +60,10 @@ export default class Aktion {
           },
           type: SUCCESS(this._baseType),
         });
+
+        return {
+          actionType: this._baseType,
+        };
       } catch (err) {
         Logger.error(err);
         this._dispatch({
@@ -71,6 +75,11 @@ export default class Aktion {
           },
           type: ERROR(this._baseType),
         });
+
+        return {
+          actionType: this._baseType,
+          error: true,
+        };
       }
     }
   }
