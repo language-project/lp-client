@@ -11,6 +11,7 @@ function onSucceed({
   return {
     ...state,
     data: {
+      ...state.data,
       [action.payload.requestId]: factory(action.payload.data),
     },
     // dataFetchInProgress: Network.COMPLETED,
@@ -33,6 +34,18 @@ export default function (state = initialState, action) {
   try {
     switch (action.type) {
       case SUCCESS(ActionType.REQUEST_GET_DEFINITIONS):
+        return onSucceed({
+          action,
+          factory: _factory,
+          state,
+        });
+      case SUCCESS(ActionType.REQUEST_GET_DEFINITIONS_BY_ID):
+        return onSucceed({
+          action,
+          factory: _factory,
+          state,
+        });
+      case SUCCESS(ActionType.REQUEST_GET_COMMENTS):
         return onSucceed({
           action,
           factory: _factory,
