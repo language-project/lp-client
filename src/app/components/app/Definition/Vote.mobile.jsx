@@ -6,6 +6,7 @@ import Facon from '@components/common/Facon/Facon.mobile';
 
 const StyledVoteBox = styled.div`
   display: flex;
+  margin-left: auto;
 `;
 
 const StyledBox = styled.div`
