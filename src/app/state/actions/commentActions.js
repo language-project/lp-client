@@ -45,3 +45,32 @@ export function requestGetComments({
     // }
   }
 };
+
+
+export function requestNewComment({
+  componentId,
+  content,
+  targetId,
+  targetType,
+  userId,
+}) {
+  const data = {
+    comment: {
+      content: content,
+      targetId: targetId,
+      targetType: targetType,
+      userId: userId,
+    },
+    componentId,
+  }
+  return async (dispatch, getState) => {
+    return Aktion.of(ActionType.REQUEST_ADD_COMMENTS)
+    .dispatcher(dispatch)
+    .basePayload(data)
+    .async(LpApis.post({
+      data: data,
+      url: URL.NEWCOMMENT,
+    }))
+    .fire();
+  }
+}
