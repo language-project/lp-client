@@ -3,6 +3,7 @@ const ROOT = process.env.NODE_ENV === 'development'
   : `http://api.marmoym.com/api/v1`;
 
 export const URL = {
+  NEWCOMMENT: `${ROOT}/comment/new`,
   COMMENTS: `${ROOT}/comments`,
   DEFINITION_NEW: `${ROOT}/definition/new`,
   DEFINITIONS: `${ROOT}/definitions`,
@@ -59,7 +60,19 @@ export default {
         targetType: {},
         userId: {},
       },
-      url: URL.DOWNVOTE_DEFINITIONS
+      url: URL.DOWNVOTE_DEFINITIONS,
+    },
+  },
+  [URL.NEWCOMMENT]: {
+    post: {
+      data: {
+        comment: {},
+        content: '',
+        targetId: {},
+        targetType: {},
+        userId: {},
+      },
+      url: URL.NEWCOMMENT,
     },
   },
   [URL.SESSION_NEW]: {
@@ -78,7 +91,7 @@ export default {
         targetType: {},
         userId: {},
       },
-      url: URL.UPVOTE_DEFINITIONS
+      url: URL.UPVOTE_DEFINITIONS,
     },
   },
   // getDefinitions: function ({

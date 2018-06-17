@@ -36,8 +36,6 @@ class DefinitionListContainer extends React.Component {
       targetId: targetId,
       userId: userId,
     })).then((res) => {
-      console.log(6666, res)
-      console.log(777, this.props.updated)
     });;
   }
 
