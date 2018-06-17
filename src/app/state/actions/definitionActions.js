@@ -73,6 +73,42 @@ export function requestGetDefinitionsById({
   }
 }
 
+export function requestDownVoteDefinition({
+  componentId,
+  targetId,
+  targetType,
+  userId,
+}) {
+  return async (dispatch, getsState) => {
+    return Aktion.of(ActionType.REQUEST_DOWNVOTE_DEFINITIONS)
+      .dispatcher(dispatch)
+      .basePayload(arguments[0])
+      .async(LpApis.post({
+        data: arguments[0],
+        url: URL.DOWNVOTE_DEFINITIONS,
+      }))
+      .fire();
+  }
+}
+
+export function requestUpVoteDefinition({
+  componentId,
+  targetId,
+  targetType,
+  userId,
+}) {
+  return async (dispatch, getsState) => {
+    return Aktion.of(ActionType.REQUEST_UPVOTE_DEFINITIONS)
+      .dispatcher(dispatch)
+      .basePayload(arguments[0])
+      .async(LpApis.post({
+        data: arguments[0],
+        url: URL.UPVOTE_DEFINITIONS,
+      }))
+      .fire();
+  }
+}
+
 // export const search = (searchParam) => {
 //   return (dispatch, getState) => {
 //     dispatch({

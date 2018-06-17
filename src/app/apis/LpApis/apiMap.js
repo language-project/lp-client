@@ -8,9 +8,11 @@ export const URL = {
   DEFINITIONS: `${ROOT}/definitions`,
   DEFINITIONS_BY_ID: `${ROOT}/definitions/:defId`,
   DEFINITIONS_IDS: `${ROOT}/definitions/ids`,
+  DOWNVOTE_DEFINITIONS: `${ROOT}/vote/down`,
   NEWDEFINITIONS: `${ROOT}/newdefinitions`,
   SESSION_NEW: `${ROOT}/session/new`,
   SEARCH: `${ROOT}/search`,
+  UPVOTE_DEFINITIONS: `${ROOT}/vote/up`,
   USERS_NEW: `${ROOT}/users/new`,
 };
 
@@ -50,6 +52,16 @@ export default {
       url: URL.DEFINITIONS_BY_ID,
     },
   },
+  [URL.DOWNVOTE_DEFINITIONS]: {
+    post: {
+      data: {
+        targetId: {},
+        targetType: {},
+        userId: {},
+      },
+      url: URL.DOWNVOTE_DEFINITIONS
+    },
+  },
   [URL.SESSION_NEW]: {
     post: {
       data: {
@@ -57,6 +69,16 @@ export default {
         password: Maybe,
       },
       url: URL.SESSION_NEW,
+    },
+  },
+  [URL.UPVOTE_DEFINITIONS]: {
+    post: {
+      data: {
+        targetId: {},
+        targetType: {},
+        userId: {},
+      },
+      url: URL.UPVOTE_DEFINITIONS
     },
   },
   // getDefinitions: function ({
