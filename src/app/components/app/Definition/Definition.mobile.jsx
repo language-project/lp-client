@@ -7,12 +7,13 @@ import { calculateTime } from '@utils/mathUtils';
 import Color from '@constants/Color';
 import Facon from '@components/common/Facon/Facon.mobile';
 import Lower from './Lower.mobile';
+import RelatedTerm from './RelatedTerm.mobile';
 import Upper from './Upper.mobile';
 import Usage from '@src/components/app/Definition/Usage.mobile'
 
 const StyledDefinition = styled.div`
   border-bottom: 1px solid ${Color.GRAY6};
-  padding: 7px 6px;
+  padding: 7px 9px;
 `;
 
 const Row = styled.div`
@@ -79,6 +80,9 @@ const Definition = ({
         </Row>
         <Row hide={minified}>
           <Usage usages={definition.usages}/>
+        </Row>
+        <Row hide={minified}>
+          <RelatedTerm relatedTerms={definition.relatedTerms}/>
         </Row>
         <Row>
           <Lower 
