@@ -4,35 +4,29 @@ import styled  from 'styled-components';
 
 import { border } from '@styles/styles';
 import Color from '@constants/Color';
+import Facon from '@components/common/Facon/Facon.mobile';
 
 const StyledUpper = styled.div`
+  color: ${Color.GRAY1};
   display: flex;
-  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 2px;
   width: 100%;
 `;
 
-const StyledBox = styled.div`
-  ${border('black')};
-  margin-left: ${props => props.left};
-  padding: 5px 5px;
-  width: ${props => props.size};
+const Term = styled.div`
+  align-items: center;
+  color: ${Color.BLACK2};
+  cursor: pointer;
+  display: flex;
+  flex-grow: 1;
+  font-size: 15px;
+  font-weight: 600;
 `;
 
-const Term = (props) => {
-  return (
-    <StyledTerm>
-      <a href={''}>
-        {/* onClick={(e) => { props.handleClickTerm(e, getUrl(props.defId)); }}> */}
-        {props.label}
-      </a>
-    </StyledTerm>
-  );
-};
-
-const Roman = styled.span`
-  margin-left: 3px;
-  font-size: 12px;
-  color: ${Color.BLACK6};`;
+const Meta = styled.div`
+  margin-left: 7px;
+`;
 
 const Upper = ({
   definitionId,
@@ -43,17 +37,17 @@ const Upper = ({
 }) => {
   return (
     <StyledUpper>
-      <StyledBox 
+      <Term
         onClick={(e) => handleClickDefinition(e, definitionId)}
         size='100%'>
         {termLabel}
-      </StyledBox>
-      <StyledBox left='8px'>
+      </Term>
+      <Meta>
         {username}
-      </StyledBox>
-      <StyledBox left='5px'>
+      </Meta>
+      <Meta>
         {updatedTime}
-      </StyledBox>
+      </Meta>
     </StyledUpper>
   );
 };

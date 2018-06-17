@@ -5,27 +5,26 @@ import styled from 'styled-components';
 import { border } from '@styles/styles';
 import Color from '@constants/Color';
 import Facon from '@components/common/Facon/Facon.mobile';
-import Vote from '@components/app/Definition/Vote.mobile'
+import Vote from '@components/app/Vote/Vote.mobile';
 
 const StyledLower = styled.div`
+  font-size: 13px;
   display: flex;
   justify-content: space-between;
   width: 100%;
 `;
 
-const StyledVoteBox = styled.div`
+const LeftButtonGroup = styled.div`
+  align-items: center;
   display: flex;
-`;
 
-const StyledFunctionBox = styled.div`
-  display: flex;
-`;
-
-const StyledBox = styled.div`
-  ${border('black')};
-  margin-left: ${props => props.left};
-  padding: 5px 5px;
-  width: ${props => props.size};
+  > div {
+    margin-right: 6px;
+    span {
+      cursor: pointer;
+      margin-right: 2px;
+    }
+  }
 `;
 
 const Lower = ({
@@ -34,14 +33,16 @@ const Lower = ({
 }) => {
   return (
     <StyledLower>
-      <StyledFunctionBox>
-        <StyledBox>
-          다른뜻 3
-        </StyledBox>
-        <StyledBox left='5px'>
-          댓글 3
-        </StyledBox>
-      </StyledFunctionBox>
+      <LeftButtonGroup>
+        <div>
+          <span>다른뜻</span> 
+          <span>3</span>
+        </div>
+        <div>
+          <span>댓글</span> 
+          <span>13</span>
+        </div>
+      </LeftButtonGroup>
       <Vote
         downVote={downVote}
         upVote={upVote}/>

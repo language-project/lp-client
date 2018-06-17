@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { border } from '@styles/styles';
 import { calculateTime } from '@utils/mathUtils';
 import Facon from '@components/common/Facon/Facon.mobile';
-import Vote from '@components/app/Definition/Vote.mobile';
+import Vote from '@components/app/Vote/Vote.mobile';
 
 const Label = styled.div``;
 const Usage = styled.div``;

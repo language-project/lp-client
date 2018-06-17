@@ -10,23 +10,22 @@ import Lower from './Lower.mobile';
 import Upper from './Upper.mobile';
 import Usage from '@src/components/app/Definition/usage.mobile'
 
+const StyledDefinition = styled.div`
+  border-bottom: 1px solid ${Color.GRAY6};
+  padding: 7px 6px;
+`;
+
 const Row = styled.div`
   display: ${(props) => props.hide ? 'none' : 'flex'};
-  font-size: 15px;
-  margin: 5px 7px;
   justify-content: space-between;
+
+  &:not(:first-child) {
+    margin-top: 7px;
+  }
 `;
 
 const StyledBox = styled.div`
-  ${border('black')};
-  margin-left: ${props => props.left};
-  padding: 5px 5px;
   width: ${props => props.size};
-`;
-
-const StyledDefinition = styled.div`
-  margin: 5px 0px;
-  ${border('black')};
 `;
 
 const Poss = ({
