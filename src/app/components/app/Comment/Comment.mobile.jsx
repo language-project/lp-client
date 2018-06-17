@@ -28,7 +28,7 @@ const StyledName = styled.div`
 `;
 const StyledVote = styled.div`
   display: flex;
-  margin-right: 5px
+  margin-right: 5px;
 `;
 
 const StyledBox = styled.div`
@@ -38,12 +38,45 @@ const StyledBox = styled.div`
   width: ${props => props.size};
 `;
 
+const iterCommentObj = ((comments, childrens, res) => {
+
+  const sortedChildrens = childrens.sort(compareByCreatedTime)
+  
+  sortedChildrens.forEach((children) => {
+    res.push({
+      label: comments[children].label,
+      depth: comments[children].depth,
+    })
+    if (comments[children].children.length === 0) {
+    // when it has no child
+    }
+    else {
+      iterCommentObj(comments, comments[children].children, res)
+    }
+  })
+  return res;
+});
+
+const getGrandParents = ((comments) => {
+  const res = []
+  Object.entries(comments).forEach(([key, value]) => {
+    if (value.depth === 1) {
+      res.push(key);
+    }
+  })
+  return res;
+});
+
+const compareByCreatedTime = (a, b)  => {
+  return a.created_at <= b.created_at;
+};
+
 const Comment = ({
-  comments,
+  comments = [],
   handleClickReply,
   showReplyForm,
 }) => {
-  return (comments && comments.map)
+  return comments.length > 0
   ? comments.map((comment, idx) => {
     const updatedTime = calculateTime(comment.created_at);
     return (
@@ -87,39 +120,6 @@ const Comment = ({
   //   )
   // })
   // : null;
-}
-
-const iterCommentObj = ((comments, childrens, res) => {
-
-  const sortedChildrens = childrens.sort(compareByCreatedTime)
-  
-  sortedChildrens.forEach((children) => {
-    res.push({
-      label: comments[children].label,
-      depth: comments[children].depth,
-    })
-    if (comments[children].children.length === 0) {
-    // when it has no child
-    }
-    else {
-      iterCommentObj(comments, comments[children].children, res)
-    }
-  })
-  return res;
-});
-
-const getGrandParents = ((comments) => {
-  const res = []
-  Object.entries(comments).forEach(([key, value]) => {
-    if (value.depth === 1) {
-      res.push(key);
-    }
-  })
-  return res;
-});
-
-const compareByCreatedTime = (a, b)  => {
-  return a.created_at <= b.created_at;
 };
 
 export default Comment;

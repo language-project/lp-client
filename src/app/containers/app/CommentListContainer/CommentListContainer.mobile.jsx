@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as React from 'react';
 import { withRouter } from 'react-router';
 
 import CommentList from '@components/app/CommentList/CommentList.mobile';
@@ -51,6 +51,7 @@ CommentListContainer.propTypes = {
 const makeMapStateToProps = (state, props) => {
   const selectComments = makeReselectComments({
     actionType: ActionType.REQUEST_GET_COMMENTS,
+    defaultValue: [],
   });
 
   return (state, props) => {
