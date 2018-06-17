@@ -13,29 +13,45 @@ const StyledDefinitionList = styled.div`
 
 const Definitions = ({
   definitions,
+  downVoted,
   handleClickDefinition,
+  handleClickDownvote,
+  handleClickUpvote,
+  upVoted,
 }) => {
   return definitions.map((d) => {
     return (
       <Definition
         definition={d}
+        downVoted={downVoted}
         handleClickDefinition={handleClickDefinition}
+        handleClickDownvote={handleClickDownvote}
+        handleClickUpvote={handleClickUpvote}
         key={d.id}
-        minified={true}/>
+        minified={true}
+        upVoted={upVoted}/>
     );
   });
 };
 
 const DefinitionList = ({
   definitions,
+  downVoted,
   handleClickDefinition,
+  handleClickDownvote,
+  handleClickUpvote,
+  upVoted,
 }) => {
   return (
     <StyledDefinitionList>
       <SearchOptionContainer/>
       <Definitions
         definitions={definitions}
-        handleClickDefinition={handleClickDefinition}/>
+        downVoted={downVoted}
+        handleClickDefinition={handleClickDefinition}
+        handleClickDownvote={handleClickDownvote}
+        handleClickUpvote={handleClickUpvote}
+        upVoted={upVoted}/>
     </StyledDefinitionList>
   );
 };

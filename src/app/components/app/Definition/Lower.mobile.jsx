@@ -29,7 +29,12 @@ const LeftButtonGroup = styled.div`
 
 const Lower = ({
   downVote,
+  downVoted,
   upVote,
+  upVoted,
+  targetId,
+  handleClickDownvote,
+  handleClickUpvote,
 }) => {
   return (
     <StyledLower>
@@ -45,7 +50,12 @@ const Lower = ({
       </LeftButtonGroup>
       <Vote
         downVote={downVote}
-        upVote={upVote}/>
+        downVoted={downVoted}
+        upVote={upVote}
+        upVoted={upVoted}
+        handleClickDownvote={handleClickDownvote}
+        handleClickUpvote={handleClickUpvote}
+        targetId={targetId}/>
     </StyledLower>
   );
 };

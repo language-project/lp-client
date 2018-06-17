@@ -17,8 +17,19 @@ const StyledVote = styled.div`
 
 const Vote = ({
   downVote,
+  downVoted,
+  targetId,
   upVote,
+  upVoted,
+  handleClickDownvote,
+  handleClickUpvote,
 }) => {
+  if (upVoted && upVoted.targetId === targetId) {
+    upVote = upVoted.vote.upVoteCount;
+  }
+  if (downVoted && downVoted.targetId === targetId) {
+    downVote = downVoted.vote.downVoteCount;
+  }
   return (
     <StyledVote>
       <div>
@@ -28,13 +39,13 @@ const Vote = ({
         {upVote}
       </div>
       <div left='5px'>
-        <Facon label='thumbs-up'/>
+        <Facon label='thumbs-up' onClick={(e) => handleClickUpvote(e, targetId, 16)}/>
       </div>
       <div left='5px'>
         {downVote}
       </div>
       <div left='5px'>
-        <Facon label='thumbs-down'/>
+        <Facon label='thumbs-down' onClick={(e) => handleClickDownvote(e, targetId, 16)}/>
       </div>
     </StyledVote>
   );

@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 
 import ActionType from '@constants/ActionType';
 import DefinitionList from '@src/components/app/DefinitionList/DefinitionList.mobile';
-import { requestGetDefinitions } from '@actions/definitionActions';
+import { requestDownVoteDefinition, requestGetDefinitions, requestUpVoteDefinition } from '@actions/definitionActions';
 import { makeReselectDefinitionList } from '@selectors/definitionSelector';
 import withUuid from '@hocs/withUuid';
 
@@ -14,6 +14,8 @@ class DefinitionListContainer extends React.Component {
   constructor(...props) {
     super(...props);
     this.handleClickDefinition = this.handleClickDefinition.bind(this);
+    this.handleClickDownvote = this.handleClickDownvote.bind(this);
+    this.handleClickUpvote = this.handleClickUpvote.bind(this);
   }
 
   componentDidMount() {
@@ -27,11 +29,36 @@ class DefinitionListContainer extends React.Component {
     this.props.history.push(`/definitions/${definitionId}`);
   }
 
+  handleClickDownvote(e, targetId, userId) {
+    this.props.dispatch(requestDownVoteDefinition({
+      componentId: this.props.componentId,
+      targetType: 'D',
+      targetId: targetId,
+      userId: userId,
+    })).then((res) => {
+      console.log(6666, res)
+      console.log(777, this.props.updated)
+    });;
+  }
+
+  handleClickUpvote(e, targetId, userId) {
+    this.props.dispatch(requestUpVoteDefinition({
+      componentId: this.props.componentId,
+      targetType: 'D',
+      targetId: targetId,
+      userId: userId,
+    }));
+  }
+
   render() {
     return (
       <DefinitionList
         definitions={this.props.definitions}
-        handleClickDefinition={this.handleClickDefinition}/>
+        downVoted={this.props.downVoted}
+        handleClickDefinition={this.handleClickDefinition}
+        handleClickDownvote={this.handleClickDownvote}
+        handleClickUpvote={this.handleClickUpvote}
+        upVoted={this.props.upVoted}/>
     );
   }
 }
@@ -47,9 +74,22 @@ const makeMapStateToProps = () => {
     defaultValue: [],
   });
 
+const selectDownVote = makeReselectDefinitionList({
+  actionType: ActionType.REQUEST_DOWNVOTE_DEFINITIONS,
+  defaultValue: [],
+});
+
+const selectUpVote = makeReselectDefinitionList({
+  actionType: ActionType.REQUEST_UPVOTE_DEFINITIONS,
+  defaultValue: [],
+});
+
   return (state, props) => {
+    console.log(333333, selectDefinitionList(state, props))
     return {
       definitions: selectDefinitionList(state, props),
+      downVoted: selectDownVote(state, props),
+      upVoted: selectUpVote(state, props),
     };
   };
 };
