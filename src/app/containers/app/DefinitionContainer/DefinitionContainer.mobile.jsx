@@ -61,7 +61,6 @@ class DefinitionContainer extends React.Component {
           handleClickUpvote={this.handleClickUpvote}/>
         <CommentListContainer/>
       </div>
-      
     );
   }
 }
