@@ -35,13 +35,10 @@ class CommentListContainer extends React.Component {
 
   render() {
     return (
-      <div>
-        <CommentList
-          comments={this.props.comments.data}
-          handleClickReply={this.handleClickReply}
-          showReplyForm={this.state.showReplyForm}/>
-          {/* comments={this.props.comments} */}
-      </div>
+      <CommentList
+        comments={this.props.comments}
+        handleClickReply={this.handleClickReply}
+        showReplyForm={this.state.showReplyForm}/>
     );
   }
 }

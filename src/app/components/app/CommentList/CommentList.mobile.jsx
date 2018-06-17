@@ -5,7 +5,6 @@ import { border } from '@styles/styles';
 import Comment from '@src/components/app/Comment/Comment.mobile';
 
 const StyledCommentList = styled.div`
-  ${border('black')}
 `;
 
 const CommentList = (props) => (
