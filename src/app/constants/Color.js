@@ -21,12 +21,6 @@ export default {
   BLUE3: '#163e98',
   BLUE4: '#3082be',
 
-  CARDBORDER1: '#e6e6e6',
-
-  CARDSHADOW1: '#00000019',
-
-  CARDTITLE1: '#101413',
-
   DARKYELLOW4: '#debd39',
   DARKYELLOW5: '#f3b636',
   DARKYELLOW51: '#f3b647',
@@ -79,7 +73,8 @@ export default {
   PINK3: '#cc3d59',
   PINK4: '#dc4462',
   PINK5: '#ea6666',
-  PINK6: '#ff5073',
+  PINK6: '#f9d8d8',
+  PINK7: '#ff5073',
 
   RED4: '#d41e1c',
   RED5: '#ef5a55',
@@ -89,6 +84,7 @@ export default {
   
   REDISHPINK4: '#ff6060',
 
+  VIOLET2: '#5d5ba0',
   VIOLET3: '#7045b3',
   VIOLET4: '#7d6784',
   VIOLET5: '#876ca5',

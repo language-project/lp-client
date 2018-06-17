@@ -8,7 +8,7 @@ import Color from '@constants/Color';
 import Facon from '@components/common/Facon/Facon.mobile';
 import Lower from './Lower.mobile';
 import Upper from './Upper.mobile';
-import Usage from '@src/components/app/Definition/usage.mobile'
+import Usage from '@src/components/app/Definition/Usage.mobile'
 
 const StyledDefinition = styled.div`
   border-bottom: 1px solid ${Color.GRAY6};
@@ -24,18 +24,23 @@ const Row = styled.div`
   }
 `;
 
-const StyledBox = styled.div`
-  width: ${props => props.size};
+const Pos = styled.div`
+  background-color: ${Color.PINK6};
+  border-radius: 3px;
+  color: ${Color.VIOLET2};
+  font-size: 13px;
+  font-weight: 600;
+  padding: 2px 4px;
 `;
 
 const Poss = ({
   poss = [],
 }) => {
-  return poss.map((elem, idx) => {
+  return poss.map((p, idx) => {
     return (
-      <StyledBox key={idx}>
-        {elem.label}
-      </StyledBox>
+      <Pos key={idx}>
+        {p.label}
+      </Pos>
     );
   });
 };
@@ -64,17 +69,17 @@ const Definition = ({
           <Poss poss={definition.poss}/>
         </Row>
         <Row>
-          <StyledBox size='100%'>
+          <p>
             {definition.label}
-          </StyledBox>
+          </p>
+        </Row>
+        <Row hide={minified}>
+          <Usage usages={definition.usages}/>
         </Row>
         <Row>
           <Lower 
             downVote={definition.vote.downVoteCount}
             upVote={definition.vote.upVoteCount}/>
-        </Row>
-        <Row hide={minified}>
-          <Usage usages={definition.usages}/>
         </Row>
       </StyledDefinition>
     )
