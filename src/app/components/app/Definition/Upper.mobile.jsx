@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types';
 import * as React from 'react';
-import styled, { StyledFunction } from 'styled-components';
+import styled  from 'styled-components';
 
 import { border } from '@styles/styles';
 import Color from '@constants/Color';
@@ -20,9 +21,7 @@ const StyledBox = styled.div`
 const Term = (props) => {
   return (
     <StyledTerm>
-      <a
-        href={''}
-        >
+      <a href={''}>
         {/* onClick={(e) => { props.handleClickTerm(e, getUrl(props.defId)); }}> */}
         {props.label}
       </a>
@@ -35,20 +34,36 @@ const Roman = styled.span`
   font-size: 12px;
   color: ${Color.BLACK6};`;
 
-const Upper = (props) => {
+const Upper = ({
+  definitionId,
+  handleClickDefinition,
+  termLabel,
+  updatedTime,
+  username,
+}) => {
   return (
     <StyledUpper>
-      <StyledBox size='100%'>
-          {props.definition.term.label}
-        </StyledBox>
-        <StyledBox left='8px'>
-          {props.definition.user.username}
-        </StyledBox>
-        <StyledBox left='5px'>
-          {props.updatedTime}
-        </StyledBox>
+      <StyledBox 
+        onClick={(e) => handleClickDefinition(e, definitionId)}
+        size='100%'>
+        {termLabel}
+      </StyledBox>
+      <StyledBox left='8px'>
+        {username}
+      </StyledBox>
+      <StyledBox left='5px'>
+        {updatedTime}
+      </StyledBox>
     </StyledUpper>
   );
+};
+
+Upper.propTypes = {
+  definitionId: PropTypes.any,
+  handleClickDefinition: PropTypes.func.isRequired,
+  termLabel: PropTypes.any,
+  updatedTime: PropTypes.any,
+  username: PropTypes.any,
 };
 
 export default Upper;

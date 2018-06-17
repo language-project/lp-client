@@ -34,35 +34,22 @@ const HomeLayout = ({
       <Masthead/>
       <Page>
         <Switch>
-          <Route 
+          <Route
+            component={DefinitionListContainer}
             exact
-            path={AppURL._}
-            render={(props) => {
-              return <DefinitionListContainer/>;
-          }}/>
-          <Route 
-            path={AppURL.SEARCH}
-            render={(props) => {
-              return <DefinitionListContainer/>;
-          }}/>
+            path={AppURL._}/>
+          <Route
+            component={DefinitionListContainer}
+            path={AppURL.SEARCH}/>
           <Route
             component={SignInContainer}
             path={AppURL.SIGNIN}/>
-
           <Route
             component={DefineContainer}
             path={AppURL.DEFINE}/>
-
-          <Route
-            path={AppURL.DEFINE}
-            render={(props) => {
-              return <DefineContainer/>;
-            }}/>
-
           <Route 
             component={DefinitionContainer}
             path={AppURL.DEFINITIONS_DEFID}/>
-            
           <Route
             render={(props) => {
               return <div>no route defined</div>
