@@ -48,7 +48,6 @@ class CommentListContainer extends React.Component {
 
   handleKeyDown(e) {
     if (e.keyCode === 13) {
-      console.log(111, "enter")
       this.props.dispatch(requestNewComment({
         componentId: this.props.componentId,
         content: this.state.replyContent,

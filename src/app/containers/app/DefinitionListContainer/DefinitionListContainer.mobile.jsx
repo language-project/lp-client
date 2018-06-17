@@ -83,7 +83,6 @@ const selectUpVote = makeReselectDefinitionList({
 });
 
   return (state, props) => {
-    console.log(333333, selectDefinitionList(state, props))
     return {
       definitions: selectDefinitionList(state, props),
       downVoted: selectDownVote(state, props),
