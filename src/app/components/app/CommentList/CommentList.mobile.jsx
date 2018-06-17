@@ -27,7 +27,7 @@ const Content = styled.div`
 `;
 
 const Lower = styled.div`
-  margin-left: auto;
+  display: flex;
 `;
 
 const Comment = ({

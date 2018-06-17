@@ -23,6 +23,7 @@ const Vote = ({
   upVoted,
   handleClickDownvote,
   handleClickUpvote,
+  ...restProps,
 }) => {
   if (upVoted && upVoted.targetId === targetId) {
     upVote = upVoted.vote.upVoteCount;
@@ -31,7 +32,7 @@ const Vote = ({
     downVote = downVoted.vote.downVoteCount;
   }
   return (
-    <StyledVote>
+    <StyledVote {...restProps}>
       <div>
         <Facon label='ellipsis-h'/>
       </div>
