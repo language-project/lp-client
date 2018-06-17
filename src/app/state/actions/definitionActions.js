@@ -64,6 +64,9 @@ export function requestGetDefinitionsById({
       .basePayload(arguments[0])
       .async(LpApis.post({
         data: arguments[0],
+        param: {
+          defId,
+        },
         url: URL.DEFINITIONS_BY_ID,
       }))
       .fire();

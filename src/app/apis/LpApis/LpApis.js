@@ -10,26 +10,41 @@ export { URL } from './apiMap';
 export default class LpApis {
   static [VERSION] = '0.0.1';
 
-  static delete({ data, url }) {
+  static delete({ 
+    data, 
+    param,
+    url, 
+  }) {
     return this.send({
       data,
       method: HttpMethod.DELETE,
+      param,
       url,
     });
   }
 
-  static get({ data, url }) {
+  static get({ 
+    data, 
+    param,
+    url,
+  }) {
     return this.send({
       data,
       method: HttpMethod.GET,
+      param,
       url,
     });
   }
 
-  static post({ data, url }) {
+  static post({ 
+    data, 
+    param,
+    url,
+  }) {
     return this.send({
       data,
       method: HttpMethod.POST,
+      param,
       url,
     });
   }
@@ -37,6 +52,7 @@ export default class LpApis {
   static send({
     data = {},
     method,
+    param,
     url,
   }) {
     if (!method || !url) {
@@ -54,7 +70,7 @@ export default class LpApis {
       return Axios({
         data: dataInContract,
         method,
-        url,
+        url: replace(url, param),
         withCredentials: true,
       });
     } else {
@@ -62,5 +78,12 @@ export default class LpApis {
     }
   }
 };
+
+function replace(url, param = {}) {
+  Object.keys(param).map((k) => {
+    url = url.replace(`:${k}`, param[k]);
+  });
+  return url;
+}
 
 export const VERSION = Symbol('version');
