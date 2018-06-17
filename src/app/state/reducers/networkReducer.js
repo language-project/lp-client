@@ -33,6 +33,12 @@ const _factory = (data) => {
 export default function (state = initialState, action) {
   try {
     switch (action.type) {
+      case SUCCESS(ActionType.REQUEST_DOWNVOTE_DEFINITIONS):
+        return onSucceed({
+          action,
+          factory: _factory,
+          state,
+        })
       case SUCCESS(ActionType.REQUEST_GET_DEFINITIONS):
         return onSucceed({
           action,
@@ -46,6 +52,12 @@ export default function (state = initialState, action) {
           state,
         });
       case SUCCESS(ActionType.REQUEST_GET_COMMENTS):
+        return onSucceed({
+          action,
+          factory: _factory,
+          state,
+        });
+      case SUCCESS(ActionType.REQUEST_UPVOTE_DEFINITIONS):
         return onSucceed({
           action,
           factory: _factory,

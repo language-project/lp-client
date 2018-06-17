@@ -8,13 +8,15 @@ import ActionType from '@constants/ActionType';
 import CommentListContainer from '@containers/app/CommentListContainer/CommentListContainer.mobile';
 import Definition from '@src/components/app/Definition/Definition.mobile';
 import { makeReselectDefinition } from '@selectors/definitionSelector';
-import { requestGetDefinitionsById } from '@actions/definitionActions';
+import { requestDownVoteDefinition, requestGetDefinitionsById, requestUpVoteDefinition } from '@actions/definitionActions';
 import withUuid from '@hocs/withUuid';
 
 class DefinitionContainer extends React.Component {
   constructor(props) {
     super(props);
     this.handleClickDefinition = this.handleClickDefinition.bind(this);
+    this.handleClickDownvote = this.handleClickDownvote.bind(this);
+    this.handleClickUpvote = this.handleClickUpvote.bind(this);
   }
 
   componentDidMount() {
@@ -29,6 +31,24 @@ class DefinitionContainer extends React.Component {
     this.props.history.push(`/definitions/${definitionId}`);
   }
 
+  handleClickDownvote(e, targetId, userId) {
+    this.props.dispatch(requestDownVoteDefinition({
+      componentId: this.props.componentId,
+      targetType: 'D',
+      targetId: targetId,
+      userId: userId,
+    }));
+  }
+
+  handleClickUpvote(e, targetId, userId) {
+    this.props.dispatch(requestUpVoteDefinition({
+      componentId: this.props.componentId,
+      targetType: 'D',
+      targetId: targetId,
+      userId: userId,
+    }));
+  }
+
   render() {
     if (this.props.definition === null) return null;
 
@@ -36,7 +56,9 @@ class DefinitionContainer extends React.Component {
       <div>
         <Definition 
           definition={this.props.definition}
-          handleClickDefinition={this.handleClickDefinition}/>
+          handleClickDefinition={this.handleClickDefinition}
+          handleClickDownvote={this.handleClickDownvote}
+          handleClickUpvote={this.handleClickUpvote}/>
         <CommentListContainer/>
       </div>
       

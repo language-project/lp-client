@@ -43,6 +43,8 @@ const Poss = ({
 const Definition = ({
   definition,
   handleClickDefinition,
+  handleClickDownvote,
+  handleClickUpvote,
   minified = false,
 }) => {
   const updatedTime = (definition && Object.keys(definition).length !== 0)
@@ -71,7 +73,10 @@ const Definition = ({
         <Row>
           <Lower 
             downVote={definition.vote.downVoteCount}
-            upVote={definition.vote.upVoteCount}/>
+            upVote={definition.vote.upVoteCount}
+            handleClickDownvote={handleClickDownvote}
+            handleClickUpvote={handleClickUpvote}
+            targetId={definition.id}/>
         </Row>
         <Row hide={minified}>
           <Usage usages={definition.usages}/>

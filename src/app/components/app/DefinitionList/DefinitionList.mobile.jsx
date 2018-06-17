@@ -14,12 +14,16 @@ const StyledDefinitionList = styled.div`
 const Definitions = ({
   definitions,
   handleClickDefinition,
+  handleClickDownvote,
+  handleClickUpvote,
 }) => {
   return definitions.map((d) => {
     return (
       <Definition
         definition={d}
         handleClickDefinition={handleClickDefinition}
+        handleClickDownvote={handleClickDownvote}
+        handleClickUpvote={handleClickUpvote}
         key={d.id}
         minified={true}/>
     );
@@ -29,13 +33,17 @@ const Definitions = ({
 const DefinitionList = ({
   definitions,
   handleClickDefinition,
+  handleClickDownvote,
+  handleClickUpvote,
 }) => {
   return (
     <StyledDefinitionList>
       <SearchOptionContainer/>
       <Definitions
         definitions={definitions}
-        handleClickDefinition={handleClickDefinition}/>
+        handleClickDefinition={handleClickDefinition}
+        handleClickDownvote={handleClickDownvote}
+        handleClickUpvote={handleClickUpvote}/>
     </StyledDefinitionList>
   );
 };

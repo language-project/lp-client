@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 
 import ActionType from '@constants/ActionType';
 import DefinitionList from '@src/components/app/DefinitionList/DefinitionList.mobile';
-import { requestGetDefinitions } from '@actions/definitionActions';
+import { requestDownVoteDefinition, requestGetDefinitions, requestUpVoteDefinition } from '@actions/definitionActions';
 import { makeReselectDefinitionList } from '@selectors/definitionSelector';
 import withUuid from '@hocs/withUuid';
 
@@ -14,6 +14,8 @@ class DefinitionListContainer extends React.Component {
   constructor(...props) {
     super(...props);
     this.handleClickDefinition = this.handleClickDefinition.bind(this);
+    this.handleClickDownvote = this.handleClickDownvote.bind(this);
+    this.handleClickUpvote = this.handleClickUpvote.bind(this);
   }
 
   componentDidMount() {
@@ -27,11 +29,32 @@ class DefinitionListContainer extends React.Component {
     this.props.history.push(`/definitions/${definitionId}`);
   }
 
+  handleClickDownvote(e, targetId, userId) {
+    this.props.dispatch(requestDownVoteDefinition({
+      componentId: this.props.componentId,
+      targetType: 'D',
+      targetId: targetId,
+      userId: userId,
+    }));
+  }
+
+  handleClickUpvote(e, targetId, userId) {
+    this.props.dispatch(requestUpVoteDefinition({
+      componentId: this.props.componentId,
+      targetType: 'D',
+      targetId: targetId,
+      userId: userId,
+    }));
+  }
+
   render() {
     return (
       <DefinitionList
         definitions={this.props.definitions}
-        handleClickDefinition={this.handleClickDefinition}/>
+        updated={this.props.updated}
+        handleClickDefinition={this.handleClickDefinition}
+        handleClickDownvote={this.handleClickDownvote}
+        handleClickUpvote={this.handleClickUpvote}/>
     );
   }
 }
@@ -47,9 +70,16 @@ const makeMapStateToProps = () => {
     defaultValue: [],
   });
 
+const selectUpdatedVote = makeReselectDefinitionList({
+  actionType: ActionType.REQUEST_UPVOTE_COMMENTS,
+  defaultValue: [],
+});
+
   return (state, props) => {
+    console.log(333333, selectDefinitionList(state, props))
     return {
       definitions: selectDefinitionList(state, props),
+      updated: selectUpdatedVote(state, props),
     };
   };
 };
