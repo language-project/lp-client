@@ -31,8 +31,10 @@ class DefineMastheadContainer extends React.Component {
       form: form[DEFINE_FORM_VALUES],
     }))
       .then((res) => {
-        if (res.error !== undefined) {
-          this.props.history(AppURL._);
+        if (res.error === undefined) {
+          setTimeout(() => {
+            this.props.history.push(AppURL._);
+          }, 1000);
         }
       });
   }

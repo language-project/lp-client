@@ -39,7 +39,6 @@ class DefinitionContainer extends React.Component {
           handleClickDefinition={this.handleClickDefinition}/>
         <CommentListContainer/>
       </div>
-      
     );
   }
 }
