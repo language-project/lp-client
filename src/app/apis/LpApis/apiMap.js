@@ -6,7 +6,7 @@ export const URL = {
   COMMENTS: `${ROOT}/comments`,
   DEFINITION_NEW: `${ROOT}/definition/new`,
   DEFINITIONS: `${ROOT}/definitions`,
-  DEFINITIONS_BY_ID: `${ROOT}/definitions/1`,
+  DEFINITIONS_BY_ID: `${ROOT}/definitions/:defId`,
   DEFINITIONS_IDS: `${ROOT}/definitions/ids`,
   NEWDEFINITIONS: `${ROOT}/newdefinitions`,
   SESSION_NEW: `${ROOT}/session/new`,
