@@ -15,7 +15,7 @@ function onSucceed({
       [action.payload.requestId]: factory(action.payload.data),
     },
     // dataFetchInProgress: Network.COMPLETED,
-  }
+  };
 }
 
 const initialState = {
@@ -23,11 +23,11 @@ const initialState = {
   dataFetchInProgress: {},
 };
 
+/**
+ * todo: data should have dedicated Model object.
+ */
 const _factory = (data) => {
-  console.log('data', data);
-  return {
-    data,
-  };
+  return data;
 };
 
 export default function (state = initialState, action) {
